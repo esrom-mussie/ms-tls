@@ -95,29 +95,10 @@ while True:
 # Save the modified HTML file
             with open("/home/esrom/Desktop/web/index.html", "w") as file:
                  file.write(str(soup))
-                 subprocess.run(["git", "add", "."])
-                 subprocess.run(["git", "commit", "-m", "changes"])
-                 subprocess.run(["git", "push"])
-            with open("/home/esrom/Desktop/web/index.html", "r") as file:
-    # Load the file into BeautifulSoup
-                 soup = BeautifulSoup(file, "html.parser")
-
-# Create a new paragraph element with the word
-            new_paragraph = soup.new_tag("p")
-            new_paragraph.string = message
-
-# Append the new paragraph element to the HTML body
-            body = soup.body
-            body.append(new_paragraph)
-
-# Save the modified HTML file
-            with open("/home/esrom/Desktop/web/index.html", "w") as file:
-                 file.write(str(soup))
-                 subprocess.run(["git", "add", "."])
-                 subprocess.run(["git", "commit", "-m", "changes"])
-                 subprocess.run(["git", "push"])
-
-                           
+            subprocess.run(["git", "add", "."])
+            subprocess.run(["git", "commit", "-m", "changes"])
+            subprocess.run(["git", "push"])
+        
 
     # close the SSL connection and the client socket
     ssl_socket.close()
