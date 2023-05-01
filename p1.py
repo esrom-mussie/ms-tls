@@ -95,12 +95,12 @@ while True:
 # Save the modified HTML file
             with open("/home/esrom/Desktop/web/index.html", "w") as file:
                  file.write(str(soup))
-            subprocess.run(["git", "config", "--global", "credential.helper", "cache"])
-            subprocess.run(["git", "config", "--global", "credential.helper", "cache --timeout=3600"])
+    subprocess.run(["git", "config", "--global", "credential.helper", "cache"])
+    subprocess.run(["git", "config", "--global", "credential.helper", "cache --timeout=3601"])
 
-            subprocess.run(["git", "add", "."])
-            subprocess.run(["git", "commit", "-m", "changes"])
-            subprocess.run(["git", "push"])
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "changes"])
+    subprocess.run(["git", "push"])
         
 
     # close the SSL connection and the client socket
