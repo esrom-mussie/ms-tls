@@ -86,7 +86,7 @@ while True:
 
 # Create a new paragraph element with the word
             new_paragraph = soup.new_tag("p")
-            new_paragraph.string = "message"
+            new_paragraph.string = message
 
 # Append the new paragraph element to the HTML body
             body = soup.body
