@@ -83,7 +83,7 @@ while True:
                 content = f.read()
 
 # Insert a new paragraph containing the word "Hello"
-            new_content = content.replace("</body>", "<p>"+message+"</p>\n</body>")
+            new_content = content.replace("</body>","<p>"+ message +"</p>\n</body>")
 
 # Open the HTML file in write mode and overwrite the old content
             with open("/home/esrom/Desktop/web/index.html", "w") as f:
