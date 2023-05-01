@@ -6,6 +6,8 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.x509.oid import NameOID
 import subprocess
+from bs4 import BeautifulSoup
+
 
 # generate a new RSA private key
 private_key = rsa.generate_private_key(
@@ -78,16 +80,21 @@ while True:
         message = data.decode("utf-8")
         if message != "Hello, server!":  # check if the message is not "hello server"
             print(f"Received token: {message}")
-                    # Open the HTML file in read mode
-            with open("/home/esrom/Desktop/web/index.html", "r") as f:
-                content = f.read()
+            with open("/home/esrom/Desktop/web/index.html", "r") as file:
+    # Load the file into BeautifulSoup
+                 soup = BeautifulSoup(file, "html.parser")
 
-# Insert a new paragraph containing the word "Hello"
-            new_content = content.replace("</body>","<p>"+ message +"</p>\n</body>")
+# Create a new paragraph element with the word
+            new_paragraph = soup.new_tag("p")
+            new_paragraph.string = message
 
-# Open the HTML file in write mode and overwrite the old content
-            with open("/home/esrom/Desktop/web/index.html", "w") as f:
-                 f.write(new_content)
+# Append the new paragraph element to the HTML body
+            body = soup.body
+            body.append(new_paragraph)
+
+# Save the modified HTML file
+            with open("/home/esrom/Desktop/web/index.html", "w") as file:
+                 file.write(str(soup))
                  subprocess.run(["git", "add", "."])
                  subprocess.run(["git", "commit", "-m", "changes"])
                  subprocess.run(["git", "push"])
