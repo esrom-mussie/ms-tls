@@ -55,10 +55,6 @@ host = "10.128.0.7"
 port = 12345
 server_socket.bind((host, port))
 
-def git_push_changes(commit_message):
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", commit_message])
-    subprocess.run(["git", "push"])
 
 # configure the server to listen for incoming connections
 server_socket.listen(1)
@@ -71,6 +67,9 @@ context.load_cert_chain(certfile="server.crt", keyfile="server.key")
 
 # accept connections from clients
 while True:
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "changes"])
+    subprocess.run(["git", "push"])
     print("Waiting for client connection...")
     client_socket, address = server_socket.accept()
     print(f"Accepted connection from {address}")
