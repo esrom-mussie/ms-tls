@@ -78,34 +78,29 @@ while True:
     data = ssl_socket.recv(1024)
     if data:
         message = data.decode("utf-8")
-        if message != "Hello, server!":  # check if the message is not "hello server"
-            print(f"Received token: {message}")
-            with open("/home/esrom/Desktop/web/index.html", "r") as file:
-    # Load the file into BeautifulSoup
-                 soup = BeautifulSoup(file, "html.parser")
+        print(f"Received token: {message}")
+        with open("/home/esrom/Desktop/web/index.html", "r") as file:
+        # Load the file into BeautifulSoup
+            soup = BeautifulSoup(file, "html.parser")
 
-# Create a new paragraph element with the word
-            new_paragraph = soup.new_tag("p")
-            new_paragraph.string = message
+    # Create a new paragraph element with the word
+        new_paragraph = soup.new_tag("p")
+        new_paragraph.string = message
 
-# Append the new paragraph element to the HTML body
-            body = soup.body
-            body.append(new_paragraph)
+    # Append the new paragraph element to the HTML body
+        body = soup.body
+        body.append(new_paragraph)
 
-# Save the modified HTML file
-            with open("/home/esrom/Desktop/web/index.html", "w") as file:
-                 file.write(str(soup)) 
-    subprocess.run(["git", "config", "--global", "credential.helper", "cache"])
-    subprocess.run(["git", "config", "--global", "credential.helper", "cache --timeout=3601"])
+    # Save the modified HTML file
+        with open("/home/esrom/Desktop/web/index.html", "w") as file:
+            file.write(str(soup))
 
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "changes"])
-    subprocess.run(["git", "push"])
-    
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "changes"])
-    subprocess.run(["git", "push"])
-
+    # Push the changes to the remote git repository
+        subprocess.run(["git", "config", "--global", "credential.helper", "cache"])
+        subprocess.run(["git", "config", "--global", "credential.helper", "cache --timeout=3601"])
+        subprocess.run(["git", "add", "."])
+        subprocess.run(["git", "commit", "-m", "changes"])
+        subprocess.run(["git", "push"])
 
 
 # close the SSL connection and the client socket
