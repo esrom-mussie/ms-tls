@@ -106,9 +106,6 @@ while True:
         subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", "changes"])
         subprocess.run(["git", "push"])
-
-    git_push_changes("Added new paragraph with message 'Hello, world!'")
-
 # close the SSL connection and the client socket
     ssl_socket.close()
     client_socket.close()
