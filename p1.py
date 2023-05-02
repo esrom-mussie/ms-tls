@@ -66,9 +66,7 @@ context = ssl.SSLContext(ssl.PROTOCOL_TLS)
 context.load_cert_chain(certfile="server.crt", keyfile="server.key")
 
 # accept connections from clients
-i=1
-while i==1:
-    i+=1
+while True:
     print("Waiting for client connection...")
     client_socket, address = server_socket.accept()
     print(f"Accepted connection from {address}")
@@ -104,14 +102,7 @@ while i==1:
         subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", "changes"])
         subprocess.run(["git", "push"])
-
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", "more changes"])
-        subprocess.run(["git", "push"])
-
 # close the SSL connection and the client socket
     ssl_socket.close()
     client_socket.close()
-subprocess.run(["git", "add", "."])
-subprocess.run(["git", "commit", "-m", "more changes"])
-subprocess.run(["git", "push"])
+
