@@ -69,9 +69,6 @@ context.load_cert_chain(certfile="server.crt", keyfile="server.key")
 i=1
 while i==1:
     i+=1
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "changes"])
-    subprocess.run(["git", "push"])
     print("Waiting for client connection...")
     client_socket, address = server_socket.accept()
     print(f"Accepted connection from {address}")
