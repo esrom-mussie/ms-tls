@@ -66,7 +66,9 @@ context = ssl.SSLContext(ssl.PROTOCOL_TLS)
 context.load_cert_chain(certfile="server.crt", keyfile="server.key")
 
 # accept connections from clients
-while True:
+i=1
+while i==1:
+    i+=1
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "changes"])
     subprocess.run(["git", "push"])
