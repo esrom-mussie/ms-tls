@@ -104,6 +104,11 @@ while i==1:
         subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", "changes"])
         subprocess.run(["git", "push"])
+
+        subprocess.run(["git", "add", "."])
+        subprocess.run(["git", "commit", "-m", "more changes"])
+        subprocess.run(["git", "push"])
+
 # close the SSL connection and the client socket
     ssl_socket.close()
     client_socket.close()
