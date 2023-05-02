@@ -55,6 +55,11 @@ host = "10.128.0.7"
 port = 12345
 server_socket.bind((host, port))
 
+def git_push_changes(commit_message):
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", commit_message])
+    subprocess.run(["git", "push"])
+
 # configure the server to listen for incoming connections
 server_socket.listen(1)
 
@@ -102,6 +107,7 @@ while True:
         subprocess.run(["git", "commit", "-m", "changes"])
         subprocess.run(["git", "push"])
 
+    git_push_changes("Added new paragraph with message 'Hello, world!'")
 
 # close the SSL connection and the client socket
     ssl_socket.close()
